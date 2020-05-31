@@ -1,0 +1,85 @@
+// include the LiquidCrystal Library
+
+#include <LiquidCrystal.h> 
+
+#define max_distance 200
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); 
+
+ const int trigPin = 9;
+const int echoPin = 10;
+long duration;
+int distance;
+
+int r=8,g=6,b=13;
+int i;
+void setup() 
+{
+  lcd.begin(16,2); // Initializes the interface to the LCD screen
+  
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(b, OUTPUT);
+}
+
+void loop() 
+{
+  // Write a pulse to the HC-SR04 Trigger Pin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, LOW);
+  
+  
+  duration = pulseIn(echoPin, HIGH);
+  
+ 
+  distance= duration*0.034/2;
+ 
+  
+
+  if (distance<=50) {
+   lcd.setCursor(0,1);
+   lcd.print("                ");
+    digitalWrite(r,HIGH);
+    delay(1000);
+     digitalWrite(r,LOW);
+    lcd.setCursor(0,0);
+  lcd.print("Wash Your Hands: ");
+ 
+  for(i=1;i<=20;i++)
+  {
+   
+    digitalWrite(b,HIGH);
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.print(i);
+    digitalWrite(b,LOW);
+  }
+ 
+  digitalWrite(g,HIGH);
+  lcd.setCursor(0,0);
+ 
+  lcd.print("Now you can go ");
+  delay(5000);
+  digitalWrite(g,LOW);
+  }
+  else{
+   lcd.clear();
+   
+    lcd.setCursor(0,0);
+    
+    lcd.print("Stay Home");
+    lcd.setCursor(0,1);
+    lcd.print("Stay Safe");
+    delay(500);
+    
+  }
+
+  
+  
+  
+}
