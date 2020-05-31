@@ -7,4 +7,6 @@ This device can be put near a basin and it will tell you wash your hands for a p
 As you approach it a timer starts for 20 secs, the duration which it expects you to wash your hands properly.
 </br>
 </br>
-This project was made using **ARDUINO.
+This project was made using ARDUINO.
+</br>
+
